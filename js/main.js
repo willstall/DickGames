@@ -1,4 +1,5 @@
 var trail;
+var spring;
 
 function main()
 {	
@@ -21,9 +22,9 @@ function main()
 		// testing.amplitude = 50;
 		testing.on("tick", update);
 
-	var spring = new Spring();
-		spring.inertia = 0.92;
-		spring.k = 0.6;
+	spring = new Spring();
+	spring.inertia = 0.92;
+	spring.k = 0.6;
 
 
 	trail = new Trail();
@@ -48,24 +49,14 @@ function keyPressed( event )
 
 function update( event )
 {
-	var inertia = 0.92 ;
-	var k = .6 ;
+	var mp = spring.parent.globalToLocal( stage.mouseX , stage.mouseY ) ;
 
-	var target = event.target ;
+	spring.targetX = mp.x;
+	spring.targetY = mp.y;
+	spring.update();
 
-	var mp = target.parent.globalToLocal( stage.mouseX , stage.mouseY ) ;
-	var x = -target.x + mp.x ;
-	var y = -target.y + mp.y ;
-
-	target.xp = target.xp * inertia + x*k ;
-	target.yp = target.yp * inertia + y*k ;
-
-	target.x += target.xp ;
-	target.y += target.yp ;
-
-	trail.targetX = target.x;
-	trail.targetY = target.y;
-	
+	trail.targetX = spring.x;
+	trail.targetY = spring.y;
 	trail.update();
 }
 
