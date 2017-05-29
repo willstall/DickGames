@@ -21,11 +21,16 @@ function main()
 		// testing.amplitude = 50;
 		testing.on("tick", update);
 
+	var spring = new Spring();
+		spring.inertia = 0.92;
+		spring.k = 0.6;
+
+
 	trail = new Trail();
 	trail.targetX = testing.x;
 	trail.targetY = testing.y;
 
-	container.addChild(trail,testing);  
+	container.addChild(spring,trail,testing);  
 
 	// Extension Test
   	var extend_test = new ExtendedContainer();
