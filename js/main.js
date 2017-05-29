@@ -15,7 +15,7 @@ function main()
 		testing.originX = testing.x;
 		testing.xp = testing.x;
 		testing.yp = testing.y;
-		testing.alpha = 0;
+		testing.alpha = .3;
 		// testing.counter = 0;
 		// testing.increment = .1;
 		// testing.amplitude = 50;
@@ -60,7 +60,7 @@ function update( event )
 
 	trail.targetX = target.x;
 	trail.targetY = target.y;
-
+	
 	trail.update();
 }
 
