@@ -15,7 +15,7 @@ function main()
 		testing.originX = testing.x;
 		testing.xp = testing.x;
 		testing.yp = testing.y;
-		testing.alpha = .3;
+		testing.alpha = 0;
 		// testing.counter = 0;
 		// testing.increment = .1;
 		// testing.amplitude = 50;

@@ -82,6 +82,7 @@
                 this.graphics.curveTo( pt.x, pt.y, xc2 , yc2 );
                 this.graphics.endStroke();
             }
+            // need to add last point
         }
 /*
 
