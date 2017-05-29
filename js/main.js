@@ -1,3 +1,5 @@
+var trail;
+
 function main()
 {	
 	// Setup
@@ -13,12 +15,17 @@ function main()
 		testing.originX = testing.x;
 		testing.xp = testing.x;
 		testing.yp = testing.y;
+		testing.alpha = 0;
 		// testing.counter = 0;
 		// testing.increment = .1;
 		// testing.amplitude = 50;
 		testing.on("tick", update);
 
-	container.addChild(testing);  
+	trail = new Trail();
+	trail.targetX = testing.x;
+	trail.targetY = testing.y;
+
+	container.addChild(trail,testing);  
 
 	// Extension Test
   	var extend_test = new ExtendedContainer();
@@ -50,6 +57,11 @@ function update( event )
 
 	target.x += target.xp ;
 	target.y += target.yp ;
+
+	trail.targetX = target.x;
+	trail.targetY = target.y;
+
+	trail.update();
 }
 
 // function update( event )
