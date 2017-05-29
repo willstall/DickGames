@@ -43,8 +43,8 @@ function keyPressed( event )
 
 function update( event )
 {
-	var inertia = 0.9 ;
-	var k = .3 ;
+	var inertia = 0.92 ;
+	var k = .6 ;
 
 	var target = event.target ;
 

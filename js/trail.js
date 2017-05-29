@@ -10,7 +10,7 @@
         this.lastTargetY = 0;
 
         this.deletionThreshold = 0.01;
-        this.accel = .9;
+        this.accel = .97;
         this.color = {
             r : 255,
             g : 0,
