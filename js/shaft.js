@@ -10,6 +10,9 @@
         this.horizon = 0;
         this.color = "rgba(209, 199, 187,1)";
 
+        this.k =.6;
+        this.inertia = .35;
+
         this.divisions = 30;//30;//Math.floor(this.height / this.girth);
         this.springs = [];
 
@@ -23,8 +26,8 @@
             for(var i =0; i < this.divisions; i++)
             {
                 var spring = new Spring();
-                    spring.k = .7;
-                    spring.inertia = .2;
+                    spring.k = this.k;
+                    spring.inertia = this.inertia;
 
                 this.springs[i] = spring;
 
@@ -42,7 +45,7 @@
 
         p.updateSprings = function()
         {
-            this.distance = this.height / this.divisions;
+            this.distance = this.height / this.divisions / 2;
 
             // for(var i =0; i < this.springs.length - 1; i++)
             // {
@@ -68,14 +71,63 @@
             for(var i = 1; i < this.springs.length-1 ; i++)
             {
                 var spring = this.springs[i];
+                   // spring.k = .7 ;
+                   spring.inertia = .1 + this.inertia * (1 - (i / this.springs.length));
+
                 var previous = this.springs[i - 1];
 
-                spring.targetX = previous.x;
-                spring.targetY = previous.y + this.distance;
+                //spring.targetX = previous.x;
+                //spring.targetY = previous.y + this.distance;
+
+                var dx = previous.x - spring.x;
+                var dy = previous.y - spring.y;
+                var angle = Math.atan2(dy, dx);
+
+                spring.targetX = previous.x - Math.cos(angle) * this.distance;
+                spring.targetY = previous.y - Math.sin(angle) * this.distance + this.distance;
+                
                 spring.update();
             }  
-            
 
+            /*
+
+
+            var segLength:Number = 120;
+
+            function onEnterFrame():Void
+            {
+                var dx:Number = _xmouse - seg0._x;
+                var dy:Number = _ymouse - seg0._y;
+                var angle:Number = Math.atan2(dy, dx);
+                seg0._rotation = angle * 180 / Math.PI;
+                seg0._x = _xmouse - Math.cos(angle) * segLength;
+                seg0._y = _ymouse - Math.sin(angle) * segLength;
+            }
+
+                var segLength:Number = 60;
+            function onEnterFrame():Void
+            {
+                var dx:Number = _xmouse - seg1._x;
+                var dy:Number = _ymouse - seg1._y;
+                var dist:Number = Math.sqrt(dx * dx + dy * dy);
+                
+                var a:Number = segLength;
+                var b:Number = segLength;
+                var c:Number = Math.min(dist, a + b);
+                
+                var B:Number = Math.acos((a * a + c * c - b * b) / (2 * a * c));
+                var C:Number = Math.acos((a * a + b * b - c * c) / (2 * a * b));
+                var D:Number = Math.atan2(dy, dx);
+                var E:Number = D + B + Math.PI + C;
+                
+                seg1._rotation = (D + B) * 180 / Math.PI;
+                
+                seg0._x = seg1._x + Math.cos(D + B) * segLength;
+                seg0._y = seg1._y + Math.sin(D + B) * segLength;
+                
+                seg0._rotation = E * 180 / Math.PI;
+            }     
+            */
 
             // for(var i = this.springs.length-2; i > 1 ; i--)
             // {
