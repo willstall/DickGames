@@ -12,8 +12,8 @@
         this.display = new createjs.Shape();
 
         this.spring = new Spring();
-        this.spring.k = .7;
-        this.spring.inertia = .2;
+        this.spring.k = .2;
+        this.spring.inertia = .6;
 
         this.addChild( this.spring,this.display );
 
