@@ -58,14 +58,16 @@ function main()
 		
 		// cock.addChild( shaft );
 
+	var head = new Head();
+
 	container.addChild(cock);
 
-	cock.addChild( ball1, ball2, horizon,shaft );		// adding to cock after so that stage exist for internal event listeneres. hacky...but w/e
 
-	stage.on("tick", update, shaft );
+	cock.addChild( ball1, ball2, horizon,shaft, head );		// adding to cock after so that stage exist for internal event listeneres. hacky...but w/e
+
+	stage.on("tick", update, this );
 }
 
 function update()
 {
-	this.update();
 }

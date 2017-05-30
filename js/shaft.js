@@ -10,16 +10,27 @@
         this.horizon = 0;
         this.color = "rgba(209, 199, 187,1)";
 
-        this.k =.6;
-        this.inertia = .35;
+        this.k =.76;
+        this.inertia = .25;//.1;
+        this.minInertia = .2;
 
         this.divisions = 30;//30;//Math.floor(this.height / this.girth);
         this.springs = [];
 
         this.create();
+
+        this.on("added", this.added, this );
     }
 
     var p = createjs.extend( Shaft, createjs.Container );
+
+        p.added = function()
+        {
+            if(this.stage == null)
+                return;
+            
+            this.stage.on("tick", this.update, this );
+        }
 
         p.create = function()
         {
@@ -39,6 +50,9 @@
 
         p.update = function()
         {
+            if(this.stage == null)
+                return;
+
             this.updateSprings();
             this.drawSprings();
         }
@@ -72,7 +86,8 @@
             {
                 var spring = this.springs[i];
                    // spring.k = .7 ;
-                   spring.inertia = .1 + this.inertia * (1 - (i / this.springs.length));
+                   //spring.k = 0.4 + .5 * (1 - (i / (this.springs.length-1)));
+                   //spring.inertia = this.minInertia + this.inertia * (1 - (i / (this.springs.length-1)));
 
                 var previous = this.springs[i - 1];
 
