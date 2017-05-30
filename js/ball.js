@@ -13,7 +13,7 @@
 
         this.spring = new Spring();
         this.spring.k = .2;
-        this.spring.inertia = .6;
+        this.spring.inertia = .73;
 
         this.addChild( this.spring,this.display );
 
