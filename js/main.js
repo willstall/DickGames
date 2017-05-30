@@ -37,6 +37,7 @@ function main()
 		ball1.offsetY = ballDrop;
 		ball1.offsetX = ballSize * -ballSplitRatio;
 		ball1.ballSize = ballSize;
+		ball1.spring.inertia += .5;
 
 	var ball2 = new Ball();
 		ball2.offsetY = ballDrop;
