@@ -7,6 +7,7 @@
         
         this.height = 100;
         this.girth = 30;
+        this.horizon = 0;
         this.color = "rgba(209, 199, 187,1)";
 
         this.divisions = 30;//30;//Math.floor(this.height / this.girth);
@@ -23,7 +24,7 @@
             {
                 var spring = new Spring();
                     spring.k = .7;
-                    spring.inertia = .5;
+                    spring.inertia = .2;
 
                 this.springs[i] = spring;
 
@@ -43,15 +44,48 @@
         {
             this.distance = this.height / this.divisions;
 
-            for(var i =0; i < this.springs.length - 1; i++)
+            // for(var i =0; i < this.springs.length - 1; i++)
+            // {
+            //     var spring = this.springs[i];
+            //     var nextSpring = this.springs[i + 1];
+
+            //     spring.targetX = nextSpring.x;
+            //     spring.targetY = nextSpring.y + this.distance;
+            //     spring.update();
+            // }
+            var mp = this.parent.globalToLocal( this.stage.mouseX , this.stage.mouseY ) ;
+
+            if(mp.y > this.horizon)
+                mp.y = this.horizon;
+
+            var tip = this.springs[0];
+                //tip.targetX = mp.x;
+                //tip.targetY = mp.y;
+                //tip.update();
+                tip.x = mp.x;
+                tip.y = mp.y;
+
+            for(var i = 1; i < this.springs.length-1 ; i++)
             {
                 var spring = this.springs[i];
-                var nextSpring = this.springs[i + 1];
+                var previous = this.springs[i - 1];
 
-                spring.targetX = nextSpring.x;
-                spring.targetY = nextSpring.y + this.distance;
+                spring.targetX = previous.x;
+                spring.targetY = previous.y + this.distance;
                 spring.update();
-            }
+            }  
+            
+
+
+            // for(var i = this.springs.length-2; i > 1 ; i--)
+            // {
+            //     var spring = this.springs[i];
+            //     var nextSpring = this.springs[i + 1];
+
+            //     spring.targetX = nextSpring.x;
+            //     spring.targetY = nextSpring.y - this.distance;
+            //     spring.update();
+            // }            
         }
 
         p.drawSprings = function()
