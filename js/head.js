@@ -4,6 +4,7 @@
     	this.Shape_constructor();
         
         this.create();
+        this.scaleX = this.scaleY = 1.2;
         this.connector = null;
 
         this.on("added", this.added, this );
