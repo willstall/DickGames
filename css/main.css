@@ -8,4 +8,5 @@ body
 {
     overflow: hidden;
     background-color: #f8f6f5;
+    cursor: none;
 }
