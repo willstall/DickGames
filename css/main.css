@@ -9,6 +9,7 @@ body
     overflow: hidden;
     background-color: #f8f6f5; 
     font-family: 'Gloria Hallelujah', cursive;
+    font-size: 14px;
     /*#403f3e*/
     /*cursor: none;*/    
 }
