@@ -51,7 +51,7 @@ function main()
 	var shaft = new Shaft();
 		shaft.height = height;
 		shaft.girth = girth;
-		shaft.horizon = ballSize;	
+		shaft.horizon = ballSize - 80;	
 
 	var cock = new createjs.Container();
 		cock.y = height * -0.5;
