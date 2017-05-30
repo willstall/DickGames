@@ -7,28 +7,35 @@ function main()
 	setup();
 
 	// Project
-	var range = 50;
-	var colors = [
-		{r : 255, g : 255, b: 255,a: 1},
-		{r : 255, g : 255, b: 0,a: 1},
-		{r : 0, g : 255, b: 255,a: 1},
-		{r : 255, g : 0, b: 255,a: 1}
-	]
+	// var range = 50;
+	// var colors = [
+	// 	{r : 255, g : 255, b: 255,a: 1},
+	// 	{r : 255, g : 255, b: 0,a: 1},
+	// 	{r : 0, g : 255, b: 255,a: 1},
+	// 	{r : 255, g : 0, b: 255,a: 1}
+	// ]
 
-	for(var i = 1; i < 4; i ++)
-	{
-		var springTrail = new SpringTrail();
-			springTrail.x = ( Math.random() - .5 ) * range;
-			springTrail.y = ( Math.random() - .5 ) * range;
-			springTrail.trail.color = colors[i];
-			springTrail.spring.k = Math.random();
-			springTrail.spring.interia = Math.random();
+	var color = {r : 209, g : 199, b: 187,a: 1};
 
-		container.addChild( springTrail );
-	}
+	var springTrail = new SpringTrail();
+		springTrail.trail.color = color;
 
-	var initialTrail = new SpringTrail();
-		initialTrail.trail.color = colors[0];
+	container.addChild(springTrail);
 
-	container.addChild( initialTrail );	
+	// for(var i = 1; i < 4; i ++)
+	// {
+	// 	var springTrail = new SpringTrail();
+	// 		springTrail.x = ( Math.random() - .5 ) * range;
+	// 		springTrail.y = ( Math.random() - .5 ) * range;
+	// 		springTrail.trail.color = colors[i];
+	// 		springTrail.spring.k = Math.random();
+	// 		springTrail.spring.interia = Math.random();
+
+	// 	container.addChild( springTrail );
+	// }
+
+	// var initialTrail = new SpringTrail();
+	// 	initialTrail.trail.color = colors[0];
+
+	// container.addChild( initialTrail );	
 }

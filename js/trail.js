@@ -17,7 +17,8 @@
             b: 0,
             a: 1
         };
-    
+        this.size = 1;
+
         this.points = [];
         // this.on("tick", update).bind(this);
     }
@@ -46,7 +47,7 @@
         p.drawPoints = function()
         {
             this.graphics.clear();
-            this.graphics.setStrokeStyle(1);
+            this.graphics.setStrokeStyle(this.size);
             this.graphics.beginStroke( this.color );
 
             if( this.points < 1)
