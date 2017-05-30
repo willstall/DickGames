@@ -1,5 +1,4 @@
-var trail;
-var spring;
+var horizon;
 
 function main()
 {	
@@ -16,23 +15,11 @@ function main()
 	var ballDrop = 15;
 	var ballSize = height * ballRatio;
 
-	var springTrail = new SpringTrail();
-		springTrail.trail.color = {r : 209, g : 199, b: 187,a: 1};
-
-	// var ball1 = new createjs.Shape();
-	// 	ball1.graphics.beginFill( color );
-	// 	ball1.graphics.drawCircle(0,0,ballSize);
-	// 	ball1.graphics.endFill();
-	// 	ball1.x = ballSize * -ballSplitRatio;
-	// 	ball1.y = ballDrop;
-
-	// var ball2 = new createjs.Shape();
-	// 	ball2.graphics.beginFill( color );
-	// 	ball2.graphics.drawCircle(0,0,ballSize);
-	// 	ball2.graphics.endFill();
-	// 	ball2.x = ballSize * ballSplitRatio;
-	// 	ball2.y = ballDrop;
-
+	horizon = new createjs.Shape();
+	horizon.y = ballSize;
+	horizon.color = horizonColor;
+	drawHorizon();
+	
 	var ball1 = new Ball();
 		ball1.offsetY = ballDrop;
 		ball1.offsetX = ballSize * -ballSplitRatio;
@@ -44,11 +31,6 @@ function main()
 		ball2.offsetX = ballSize * ballSplitRatio;
 		ball2.ballSize = ballSize;
 
-	var horizon = new createjs.Shape();
-		horizon.graphics.beginFill(horizonColor);
-		horizon.graphics.rect(stage.width*-0.5,0,stage.width,stage.height);
-		horizon.y = ballSize;
-
 	var shaft = new Shaft();
 		shaft.height = height;
 		shaft.girth = girth;
@@ -56,12 +38,19 @@ function main()
 
 	var cock = new createjs.Container();
 		cock.y = height * -0.5;
-		
-		// cock.addChild( shaft );
 
 	var head = new Head();
 		head.connector = shaft.head;
 
 	container.addChild(cock);
 	cock.addChild( ball1, ball2, horizon, shaft, head );		// adding to cock after so that stage exist for internal event listeneres. hacky...but w/e
+
+	window.addEventListener( 'resize', drawHorizon, false );
+}
+
+function drawHorizon()
+{
+	horizon.graphics.clear();
+	horizon.graphics.beginFill(horizon.color);
+	horizon.graphics.rect(stage.width*-0.5,0,stage.width,stage.height);	
 }
