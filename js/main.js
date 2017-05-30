@@ -32,12 +32,6 @@ function main()
 		ball2.x = ballSize * ballSplitRatio;
 		ball2.y = ballDrop;
 
-	// var shaft = new createjs.Shape();
-	// 	shaft.graphics.setStrokeStyle(girth,"round");
-	// 	shaft.graphics.beginStroke( color );
-	// 	shaft.graphics.moveTo(0,0);
-	// 	shaft.graphics.lineTo(0,height);
-	// 	shaft.graphics.endStroke();
 	var shaft = new Shaft();
 		shaft.height = height;
 		shaft.girth = girth;	
@@ -45,6 +39,14 @@ function main()
 	var cock = new createjs.Container();
 		cock.y = height * -0.5;
 		cock.addChild( ball1, ball2, shaft );
+		// cock.addChild( shaft );
 
 	container.addChild(springTrail, cock);
+
+	stage.on("tick", update, shaft );
+}
+
+function update()
+{
+	this.update();
 }
