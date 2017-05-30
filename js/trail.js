@@ -47,7 +47,7 @@
         p.drawPoints = function()
         {
             this.graphics.clear();
-            this.graphics.setStrokeStyle(this.size);
+            this.graphics.setStrokeStyle(this.size,"round");
             this.graphics.beginStroke( this.color );
 
             if( this.points < 1)
