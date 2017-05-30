@@ -59,15 +59,8 @@ function main()
 		// cock.addChild( shaft );
 
 	var head = new Head();
+		head.connector = shaft.head;
 
 	container.addChild(cock);
-
-
-	cock.addChild( ball1, ball2, horizon,shaft, head );		// adding to cock after so that stage exist for internal event listeneres. hacky...but w/e
-
-	stage.on("tick", update, this );
-}
-
-function update()
-{
+	cock.addChild( ball1, ball2, horizon, shaft, head );		// adding to cock after so that stage exist for internal event listeneres. hacky...but w/e
 }

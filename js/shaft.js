@@ -18,6 +18,7 @@
         this.springs = [];
 
         this.create();
+        this.head = this.springs[this.springs.length-3];
 
         this.on("added", this.added, this );
     }
@@ -98,6 +99,7 @@
                 var dy = previous.y - spring.y;
                 var angle = Math.atan2(dy, dx);
 
+                spring.rotation = angle * 180 / Math.PI + 90;
                 spring.targetX = previous.x - Math.cos(angle) * this.distance;
                 spring.targetY = previous.y - Math.sin(angle) * this.distance + this.distance;
                 
