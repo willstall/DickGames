@@ -7,6 +7,30 @@ html, body, div, ul, li, button, h1, p
 body
 {
     overflow: hidden;
-    background-color: #f8f6f5;
-    /*cursor: none;*/
+    background-color: #f8f6f5; 
+    font-family: 'Indie Flower', cursive;
+    /*#403f3e*/
+    /*cursor: none;*/    
+}
+
+#footer
+{
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    color: white;
+}
+
+a
+{
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover
+{
+    color: pink;
 }
